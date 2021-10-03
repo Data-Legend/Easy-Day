@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./src/imgs/logo.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Stick+No+Bills:wght@200;300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./src/css/all.min.css"> 
+    <link rel="stylesheet" href="./src/css/style.css">
+    <title>Easy-Day App</title>
+</head>
+ <body>
+   <div class="left_bar">
+     <div class="logo">
+       <a href="#"><img src="./src/imgs/logo.png" alt="toDo-logo"></a>
+       <!-- <h2>To-Do List</h2> -->
+     </div>
+     <div class="options_list">
+     </div>
+   </div>
+   <div class="parenContainer">
+    <div class="container">
+      <div class="header">
+        <div><img src="./src/imgs/Calendar-icon.png" alt=""><h2></h2></div>
+        <p></p>
+      </div>
+      <div class="addTask">
+       <form class="new-task-form" action="">
+         <div class="select">
+         <select id="priority">
+           <option selected  value="Easy">EASY</option>
+          <option value="MID">MID</option>
+          <option value="HIGH">HIGH</option>
+          </select>
+          </div>
+          <input autofocus id="taskInput" type="text" name="newTask" placeholder="Add a new task...">
+         <button type="submit">Add</button>
+       </form>
+      </div>
+      <div class="tasks">
+        <div class="tasks-list">
+          <ul class="today-s-list">
+            </ul>
+        </div>
+      </div>
+     </div>
+   </div>
+  <script type="module" defer src="./src/js/controller.js"></script>
+</body>
+</html>

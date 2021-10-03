@@ -1,0 +1,702 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+body{
+    background-color: rgb(49 56 64);
+    font-family: 'Oswald', sans-serif;
+}
+html {
+    scroll-behavior: smooth;
+}
+ul {
+    list-style: none;
+}
+input, button{
+    outline: none;
+    border: none;
+}
+button{
+    cursor: pointer;
+    /* border: 1px solid #ffffff42; */
+}
+/* fix problem autofill  */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: 5000s ease-in-out 0s; 
+}
+.parenContainer{
+    margin-left: 200px;
+    background-color: rgb(49 56 64);
+    color: #fff;
+    border-left: 1px solid #ffffff42;
+    background-image: url('../imgs/des.jpg');
+    background-size: cover;
+}
+::-webkit-scrollbar {
+    width: 0;
+    height: 10px;
+    background: transparent;
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+    background: #2572a78a;
+}
+/* ==================assets======================================= */
+.easy{
+    background-color: #0aa700 !important;
+}
+.hard{
+    background-color: #e00707 !important;
+}
+/* ==============Kry Frames=========== */
+@keyframes disappear {
+    from {
+        opacity: 0.5;
+    }
+    to {
+        opacity: 0;
+    }
+}
+@keyframes rotate180 {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(180deg);
+    }
+}
+@keyframes typing {
+    from {
+        width: 0px;
+    }
+    to {
+       width: 86px;
+    }
+}
+@keyframes blink {
+    from {
+        border-rigth: 0;
+    }
+    to {
+        border-right: 1px solid #ccc;
+        padding-right: 2px;
+    }
+  }
+  @keyframes grow {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+  }
+  @keyframes spin {
+      0%{transform: rotate(0deg);}
+    25%  {transform: rotate(45deg);}
+    50%  {transform: rotate(180deg);}
+    75%  {transform: rotate(225deg);}
+    100% {transform: rotate(360deg);}
+  }
+/* ===================== */
+.disappear{
+    animation: disappear 1s linear;
+}
+.selected-li {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 25px;
+}
+.no-tasks{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 70px;
+}
+.no-tasks img{
+    /* width: 100px;
+    margin-right: 50px; */
+    width: 150px;
+    margin-right: 50px;
+    border-radius: 10px;
+}
+.no-tasks h2{
+    padding-bottom: 5px;
+    color: #e4e8ec;
+    font-size: 42px;
+    font-family: 'Stick No Bills', sans-serif;
+    letter-spacing: 1.1px;
+    text-shadow: 2px 0 1px black;
+}
+.no-tasks p{
+    font-size: 20px;
+    font-weight: 400;
+    color: #ef0f0f;;
+}
+/* ===================sections======================================= */
+.left_bar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100vh;
+    padding-right: 10px;
+    background-color: #2c3239;
+    color: #fff;
+}
+.left_bar .logo{
+    margin-left: 40px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+.logo a{
+    /* margin-right: 13px; */
+}
+.logo h2{
+    font-family: 'Stick No Bills', sans-serif;
+    font-weight: 400;
+    letter-spacing: 3px;
+}
+.left_bar .logo img{
+    width: 100px;
+    max-width: 100%;
+    padding: 20px 0;
+}
+.left_bar .options_list{
+    margin-left: 20px;
+}
+.options_list li{
+    width: fit-content;
+    display: flex;
+    cursor: pointer;
+    margin: 27px 0;
+    padding: 12px 15px;
+}
+.options_list li:nth-of-type(1){
+    margin-top: 20px !important;
+}
+.options_list li:hover p{
+    font-weight: 500 !important;
+    letter-spacing: 0.1px;
+}
+.options_list li span{
+font-size: 18px;
+}
+.options_list li p{
+    padding-left: 13px;
+    font-size: 20px;
+    font-weight: 300;
+}
+/* ======================Header=================================== */
+.container{
+    min-height: 100vh;
+    position: relative;
+    font-weight: 300;
+    padding: 20px 40px;
+    width: 900px;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    border-radius: 20px;
+}
+.container .header{
+    margin: 30px 0 40px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.container .header div{
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+.header img{
+    height: 60px;
+    margin-right: 10px;
+}
+.container .header h2{
+    color: hsl(208deg 18% 91%);
+    font-family: 'Stick No Bills', sans-serif;
+    font-weight: 400;
+    font-size: 45px;
+    letter-spacing: 1.5px;
+    text-shadow:0 1px 8px #4e4a4a;
+}
+.header h2 i{
+    font-weight: 100;
+}
+.container .header p{
+    animation:typing 2s steps(70, end), blink 0.3s 6 ease-in-out ;
+    letter-spacing: 0.2px;
+    word-wrap: break-word;
+    white-space: nowrap;
+    overflow: hidden;
+    color: hsl(220deg 6% 52%);
+    font-size: 18px;
+    color:hsl(210deg 17% 91%);
+}
+.container .addTask{
+    position: relative;
+    margin-bottom: 25px;
+}
+.addTask form {
+    overflow: hidden;
+   padding-left: 15px;
+    display: flex;
+    align-items: center;
+    width: 600px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #2d2b2b;
+    border-radius: 9px;
+}
+/* .addTask::after{
+    content: "";
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    background-color: #b7b7b72d;
+    height: 1px;
+    width: 100%;
+    transform: translateX(-50%);
+    
+} */
+.addTask form input{
+    flex-grow: 55;
+    height: 50px;
+    background-color: inherit;
+    position: relative;
+    display: flex;
+    word-wrap: break-word;
+    color: #b7b7b7;
+    padding-left: 15px;
+    font-size: 16px;
+    border-radius: inherit;
+}
+.select {
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    width: 80px;
+    height: 28px;
+}
+.select::after {
+    color: #e4e8ec;
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 2px 1.5px;
+    background-color: #313840;
+    transition: .25s all ease;
+    pointer-events: none;
+}
+.addTask form select{
+    flex-grow: 2;
+    appearance: none;
+    border: 0;
+    outline: 0;
+    /* background-color: #0aa700; */
+    background-color: #0196ff;
+    border-radius: 2px;
+    color: #dedede;
+    text-align: center;
+    padding-right: 15px;
+    cursor: pointer;
+}
+  .select:hover::after {
+    color: #23b499;
+ }
+.addTask form:hover{
+    box-shadow: 0 1.5px 5px rgb(99 99 99 / 50%);
+    border-color: rgba(108, 109, 110, 0);
+}
+.addTask form input:focus, .addTask form input:hover form {
+    outline: none;
+    /* box-shadow: 0 1.5px 5px rgb(99 99 99 / 50%);
+    border-color: rgba(108, 109, 110, 0); */
+}
+.addTask form i{
+    font-size: 18px;
+    color: #b7b7b7;
+}
+.addTask button{
+    background-color: rgb(29 155 240);
+    padding: 18px 10px;
+    border-radius: 0 9px 9px 0;
+    font-size: 13px;
+    color: #fff;
+    letter-spacing: 1.1px;
+}
+
+/* =====================================Tasks================================= */
+.tasks{
+    /* padding-right: 30px; */
+}
+.tasks .tasks-header{
+    display: flex;
+    border-bottom: 1px solid #484e55;
+    justify-content: flex-end;
+    padding-bottom: 10px;
+}
+.tasks-header p{
+    color: #e4e8ec;
+}
+.tasks-header p:nth-of-type(1){
+    margin-right: 42px;
+    font-size: 16px;
+}
+.tasks-header .due{
+    margin-right: 30px;
+}
+.tasks-list {
+    margin-top: 16px;
+}
+.tasks .tasks-list li{
+    position: relative;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+.tasks-list li::after ,.movies-list li::after{
+    content: "";
+    position: absolute;
+    background-color: #666c729c;
+    height: 1px;
+    bottom: -12.5px;
+    left: 0;
+    width: 100%;
+}
+.tasks-list li .check-task , .movies-list  li .check-task {
+    font-size: 16px;
+    color: transparent;
+    margin-right: 13px;
+    letter-spacing: 2.5px;
+    border: 1px solid #1d9bf096;
+    border-radius: 2px;
+    cursor: pointer;
+}
+.tasks-list li p{
+    color: #e4e8ec;
+    font-size: 19px;
+    font-weight: 200;
+    white-space: break-spaces;
+    overflow: hidden;
+    overflow-x: scroll;
+}
+.tasks-list .remove-item ,.movies-list .remove-item{
+    cursor: pointer;
+    color: #222222;
+    font-size: 16px;
+    margin-left: auto;
+    margin-right: 45px;
+    background: #ffffffd1;
+    padding: 3px 6px;
+    border-radius: 3px;
+    color: #b32020;
+}
+.remove-item:hover{
+    color: #e42f2f;
+}
+.tasks-list li div ,.movies-list li div{
+    display: flex;
+    /* margin-left: auto; */
+    width: 110px;
+    justify-content: space-between;
+    align-items: center;
+}
+.tasks-list li div span , .movies-list li div span{
+    justify-self: flex-end;
+    color: #e4e8ec;
+    font-size: 16px;
+}
+.tasks-list li div span:nth-of-type(1){
+color: rgb(228 232 236 / 84%);
+}
+.tasks-list li div span:nth-of-type(2){
+    margin-right: 16px;
+    padding: 2px 4px;
+    background-color: #c1970d;
+    border-radius: 3px;
+}
+.checked-icon{
+    color: #2572a7 !important;
+    border: none !important;
+    font-size: 20px !important;
+}
+.task-done{
+    text-decoration: line-through !important;
+    color: #e4e8ec94 !important;
+}
+/* =====================Movies=================== */
+
+.addMovie{
+    position: relative;
+    margin: 25px 0;
+}
+.movie-form , .book-form{
+    padding: 0 15px;
+    padding-right: 0;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #2d2b2b;
+    border-radius: 9px;
+}
+.add-movie{
+    padding: 18px 10px;
+    background-color: rgb(208 18 27);
+    border-radius: 0 9px 9px 0;
+    font-size: 13px;
+    color: #fff;
+    letter-spacing: 1.1px;
+}
+.movie-form input{
+    flex-grow: 55;
+    height: 50px;
+    background-color: inherit;
+    position: relative;
+    display: flex;
+    word-wrap: break-word;
+    color: #b7b7b7;
+    padding-left: 15px;
+    font-size: 16px;
+    border-radius: inherit;
+}
+.addMovie img{
+    width: 80px;
+}
+.movies-list-header{
+    display: flex;
+    border-bottom: 1px solid #484e55;
+    justify-content: flex-end;
+    padding-bottom: 10px;
+}
+.item-name{
+    display: flex;
+    margin-right: auto;
+    color: #f8f8f8;
+}
+.item-name img{
+     margin-right: 10px;
+    height: 25px;
+}
+.movies-list-header p{
+    color: #e4e8ec;
+    padding-right: 20px;
+}
+.movies-list-header p:nth-of-type(1){
+    margin-right: 40px;
+    font-size: 14px;
+}
+.movies-list-header p:only-of-type(2){
+    margin-right: 30px;
+}
+.movies-list {
+    margin-top: 16px;
+}
+.movies-list li{
+    position: relative;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+.movies-list li div span {
+    justify-self: flex-end;
+    color: #e4e8ec;
+    font-size: 14px;
+}
+.movies-list li div{
+    width: auto;
+    padding-right: 10px;
+}
+.movies .no-tasks{
+    padding-top: 50px;
+}
+.movies .no-tasks img{
+height: 150px;
+width: auto;
+}
+.movies .no-tasks h2{
+    color: #d0121b;
+    text-shadow: 2px 0 1px #3e3e3e;
+}
+.movies .no-tasks p{
+    color: #ffffff;
+}
+.movies .checked-icon{
+        color: #a53439 !important;
+}
+/* =========================================================== */
+.archive {
+    margin-top: 25px;
+}
+.no-books h2{
+ color: #32a6de !important ;
+}
+.archive-list img{
+    width: 26px;
+    margin-right: 10px;
+}
+.clear-archive{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    width: fit-content;
+    padding: 10px 15px;
+    background-color: #9a3333;
+    border-radius: 15px;
+    margin-top: 10px;
+    cursor: pointer;
+    margin-right: auto;
+    margin-left: auto;
+}
+.clear-archive p{
+    margin-right: 10px;
+}
+.clear-archive i{
+    color: #c5c5c5;
+}
+.clear-archive:hover{
+    background-color: #bf1111;
+}
+.clear-archive:hover i{
+    animation: rotate180 1s ease-in-out;
+}
+.archive .movies-list-header p:nth-of-type(1){
+    margin-right: 40px !important;
+}
+/* =====================Books======================================== */
+.books-header{
+    background-image: url('../imgs/book-cover.jpg');
+}
+.book-form img{
+    height: 30px !important;
+    width: auto !important;
+}
+.book-form button{
+    background-color: rgb(67 169 25) !important;
+}
+.books .checked-icon{
+    color: #43a919 !important;
+}
+/* ======================Media Querys================= */
+@media (max-width: 1120px){
+    .container{
+        width: auto !important;
+    }
+}
+@media (max-width:950px) {
+form{
+    width: auto !important;
+}
+}
+
+@media (max-width:800px){
+    .no-tasks{
+        flex-direction: column;
+        margin-top: 5px;
+        padding-top: 30px;
+    }
+    .no-tasks img{
+        margin-bottom: 25px;
+        margin-right: 0;
+    }
+    .no-tasks h2{
+        font-size: 32px;
+    }
+        .parenContainer {
+            margin-left: 0px;
+            margin-top: 90px;
+    }
+    .options_list li:nth-of-type(1) {
+        margin-top: auto !important;
+    }
+    .options_list{
+        flex-grow: 99;
+    }
+    .options_list ul{
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    .options_list li p{
+        display: none
+    }
+    .left_bar{
+        width: 100vw;
+        z-index: 99;
+        top: 0;
+        height: 90px;
+        display: flex;
+        align-items: center;
+        }
+        .options_list li {
+            padding: 10px 16px;
+            margin: 0;
+        }
+}
+@media (max-width:480px) {
+    .addMovie img {
+        width: 50px;
+    }
+    .movies-list-header p:nth-of-type(1){
+        margin-right: 22px;
+    }
+    .addTask form input {
+        font-size: 14px;
+    }
+    .container{
+    padding: 20px 20px;
+    }
+    .tasks-list li p,.movies-list ul li p {
+        width: 120px;
+        text-align: left;
+
+    }
+    .left_bar .logo {
+        margin-left: 10px;
+    }
+    .logo h2{
+        font-size: 20px;
+        width: 50%;
+        display: none;
+    }
+    .tasks-list .remove-item, .movies-list .remove-item{
+        margin-right: 25px;
+        font-size: 14px;
+    }
+    .tasks-header p:nth-of-type(1) {
+        margin-right: 22px;
+    }
+    .tasks-list li span{
+        font-size: 14px !important;
+    }
+    .options_list li span {
+        font-size: 16px;
+    }
+
+}
+
+@media (max-width:410px){
+    .tasks-list li p {
+        font-size: 16px;
+    }
+    .tasks-list .remove-item, .movies-list .remove-item{
+        margin-right: 25px;
+    }
+    .tasks-header p:nth-of-type(1) {
+        margin-right: 12px;
+    }
+}
