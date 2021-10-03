@@ -1,5 +1,5 @@
 # Easy-Day App
-## Create the perfect list for every need and never miss a task or idea again
+## - Create the perfect list for every need and never miss a task or idea again
 ### Features :
 - Put all your to-do's in one place to save time.
 - organise your daily tasks with special priority for each task. [Easy - MID - High].
