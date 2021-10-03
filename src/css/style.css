@@ -255,17 +255,7 @@ font-size: 18px;
     background-color: #2d2b2b;
     border-radius: 9px;
 }
-/* .addTask::after{
-    content: "";
-    position: absolute;
-    bottom: -35px;
-    left: 50%;
-    background-color: #b7b7b72d;
-    height: 1px;
-    width: 100%;
-    transform: translateX(-50%);
-    
-} */
+
 .addTask form input{
     flex-grow: 55;
     height: 50px;
@@ -291,7 +281,7 @@ font-size: 18px;
     position: absolute;
     top: 0;
     right: 0;
-    padding: 2px 1.5px;
+    padding: 2px 1.5px 9px;
     background-color: #313840;
     transition: .25s all ease;
     pointer-events: none;
@@ -604,6 +594,11 @@ form{
 }
 
 @media (max-width:800px){
+    .selected-li {
+        background-color: rgb(255 255 255);
+        border-radius: 25px;
+        color: #2c3239;
+    }
     .no-tasks{
         flex-direction: column;
         margin-top: 5px;
@@ -684,7 +679,7 @@ form{
         font-size: 14px !important;
     }
     .options_list li span {
-        font-size: 16px;
+        /* font-size: 16px; */
     }
 
 }

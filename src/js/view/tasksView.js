@@ -26,7 +26,7 @@ class tasksView extends view{
       <img src="./src/imgs/earth404.gif" alt="404-Gif">
       <div>
         <h2>Your to-Do's is empty ;(</h2>
-        <p>Add a new task to your daily list...</p>
+        <p>Add new tasks to your daily list...</p>
       </div>
     </div>` }
     else header = `
