@@ -19,7 +19,6 @@ input, button{
 }
 button{
     cursor: pointer;
-    /* border: 1px solid #ffffff42; */
 }
 /* fix problem autofill  */
 input:-webkit-autofill,
@@ -116,8 +115,6 @@ input:-webkit-autofill:active {
     padding-top: 70px;
 }
 .no-tasks img{
-    /* width: 100px;
-    margin-right: 50px; */
     width: 150px;
     margin-right: 50px;
     border-radius: 10px;
@@ -151,9 +148,6 @@ input:-webkit-autofill:active {
     margin-top: 10px;
     display: flex;
     align-items: center;
-}
-.logo a{
-    /* margin-right: 13px; */
 }
 .logo h2{
     font-family: 'Stick No Bills', sans-serif;
@@ -308,8 +302,6 @@ font-size: 18px;
 }
 .addTask form input:focus, .addTask form input:hover form {
     outline: none;
-    /* box-shadow: 0 1.5px 5px rgb(99 99 99 / 50%);
-    border-color: rgba(108, 109, 110, 0); */
 }
 .addTask form i{
     font-size: 18px;
@@ -325,9 +317,6 @@ font-size: 18px;
 }
 
 /* =====================================Tasks================================= */
-.tasks{
-    /* padding-right: 30px; */
-}
 .tasks .tasks-header{
     display: flex;
     border-bottom: 1px solid #484e55;
@@ -693,5 +682,17 @@ form{
     }
     .tasks-header p:nth-of-type(1) {
         margin-right: 12px;
+    }
+}
+@media (max-width:370px) {
+    .addMovie img{
+        width:30px;
+    }
+    .book-form img {
+    height: 30px !important;
+    width: auto !important;
+   }
+    .add-movie {
+        padding: 18px 7px;
     }
 }
