@@ -5,5 +5,5 @@
 - Save your Movies/Series watch list on special section. [Movies List]
 - Save your favouritebooks read list on special section. [Books List]
 - Archive your done tasks/books/movies when you finish them. [Archive Section]
-- Tasks are updated daily, so you can check your unfinished tasks again.
+- Your daily tasks will be reactivated everyday, so you can check your tasks again.
 
