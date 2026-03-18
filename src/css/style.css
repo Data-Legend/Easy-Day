@@ -419,51 +419,51 @@ a {
   color: var(--text-400);
 }
 
-/* Hadith / Wisdom card */
-.wisdom-card {
+/* Azkar card */
+.azkar-card {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 12px;
-  padding: 12px 14px;
-  background: linear-gradient(135deg, var(--blue-glow), var(--green-glow));
+  gap: 14px;
+  padding: 14px 16px;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(14, 165, 233, 0.1));
   border: 1px solid var(--border);
   border-radius: var(--radius);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   animation: fadeUp .45s var(--ease) .06s both;
   text-align: right;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
-.wisdom-content {
+.azkar-content {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
   flex: 1;
 }
 
-.wisdom-text {
+.azkar-text {
   font-family: 'Amiri', 'Inter', sans-serif;
-  /* Fallback slightly nicer for arabic if needed */
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--text-200);
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
-.wisdom-source {
-  font-size: 9px;
-  color: var(--text-400);
+.azkar-source {
+  font-size: 10px;
+  color: var(--green);
   font-weight: 600;
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
-.wisdom-icon {
-  color: var(--blue);
-  font-size: 16px;
-  margin-top: 2px;
+.azkar-icon {
+  color: var(--green);
+  font-size: 18px;
+  margin-top: 4px;
   flex-shrink: 0;
-  opacity: .5;
+  opacity: 0.4;
 }
 
 /* ========================================
@@ -1721,12 +1721,12 @@ kbd {
     margin-bottom: 8px;
   }
 
-  .wisdom-card {
-    padding: 10px 12px;
+  .azkar-card {
+    padding: 12px 14px;
   }
 
-  .wisdom-text {
-    font-size: 12px;
+  .azkar-text {
+    font-size: 14px;
   }
 
   .opts-row {
@@ -1874,4 +1874,9 @@ html[dir="rtl"] .opt-check span {
   html[dir="rtl"] .mobile-header {
     border-bottom: 1px solid var(--border);
   }
+}
+
+html[dir="rtl"] .list-item::before {
+  left: auto;
+  right: 0;
 }

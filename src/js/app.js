@@ -44,7 +44,7 @@
       taskPlaceholder: 'What needs to be done?', due: 'Due', category: 'Category', daily: 'Daily', repeat: 'Repeat',
       noMatch: 'No matching tasks', adjFilters: 'Try adjusting your filters', noTasks: 'No tasks yet', addFirst: 'Add your first task above!',
       upcoming: 'Upcoming', Remove: 'Remove',
-      readList: 'Reading List', book: 'book', read: 'read',
+      readList: 'Reading List', book: 'book', read: 'read', pgRead: 'Pages Read',
       addBook: 'Add a new book...', totalPg: 'Total Pages', dailyGl: 'Daily Goal', catEx: 'Category (e.g. Science)',
       noCatBooks: 'No books in this category', tryCat: 'Try another category', noBooks: 'No books yet', startRead: 'Start building your reading list!',
       expected: 'EXPECTED: ', added: 'Added: ', finished: 'Finished: ', pg: 'pg', pgDay: 'pg/day',
@@ -63,7 +63,7 @@
       taskPlaceholder: 'ما الذي ينبغي إنجازه اليوم؟', due: 'الاستحقاق', category: 'الفئة', daily: 'يومياً', repeat: 'التكرار',
       noMatch: 'لا توجد مهام مطابقة', adjFilters: 'حاول تغيير الفلاتر', noTasks: 'لا توجد مهام بعد', addFirst: 'أضف مهمتك الأولى بالأعلى!',
       upcoming: 'القادمة', Remove: 'حذف',
-      readList: 'قائمة القراءة', book: 'كتاب', read: 'تمت قرائته',
+      readList: 'قائمة القراءة', book: 'كتاب', read: 'تمت قرائته', pgRead: 'الصفحات المقروءة',
       addBook: 'أضف كتاباً جديداً...', totalPg: 'عدد الصفحات', dailyGl: 'الهدف اليومي', catEx: 'الفئة (مثال: علوم)',
       noCatBooks: 'لا توجد كتب في هذه الفئة', tryCat: 'جرب فئة مختلفة', noBooks: 'لا توجد كتب في القائمة', startRead: 'ابدأ ببناء قائمة قراءتك!',
       expected: 'المتوقع: ', added: 'أُضيف: ', finished: 'اكتمل: ', pg: 'ص', pgDay: 'ص/ي',
@@ -86,43 +86,37 @@
   var DAYS_SHORT = { en: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'], ar: ['أح', 'إث', 'ث', 'أر', 'خ', 'ج', 'س'] };
   var MONTHS = { en: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], ar: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'] };
 
-  // ─── Hadith of the Day ──────────────────────────────────────
-  var HADITHS = [
-    { text: "إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى.", source: "صحيح البخاري ومسلم" },
-    { text: "مَنْ يُرِدِ اللَّهُ بِهِ خَيْرًا يُفَقِّهْهُ فِي الدِّينِ.", source: "صحيح البخاري ومسلم" },
-    { text: "الكَلِمَةُ الطَّيِّبَةُ صَدَقَةٌ.", source: "صحيح البخاري ومسلم" },
-    { text: "المُسْلِمُ مَنْ سَلِمَ المُسْلِمُونَ مِنْ لِسَانِهِ وَيَدِهِ.", source: "صحيح البخاري ومسلم" },
-    { text: "خَيْرُكُمْ مَنْ تَعَلَّمَ القُرْآنَ وَعَلَّمَهُ.", source: "صحيح البخاري" },
-    { text: "لاَ يُؤْمِنُ أَحَدُكُمْ، حَتَّى يُحِبَّ لِأَخِيهِ مَا يُحِبُّ لِنَفْسِهِ.", source: "صحيح البخاري ومسلم" },
-    { text: "مَنْ صَلَّى عَلَيَّ صَلاةً صَلَّى اللَّهُ عَلَيْهِ بِهَا عَشْرًا.", source: "صحيح مسلم" },
-    { text: "كُلُّ مَعْرُوفٍ صَدَقَةٌ.", source: "صحيح البخاري" },
-    { text: "الدِّينُ النَّصِيحَةُ.", source: "صحيح مسلم" },
-    { text: "مَنْ دَلَّ عَلَى خَيْرٍ فَلَهُ مِثْلُ أَجْرِ فَاعِلِهِ.", source: "صحيح مسلم" },
-    { text: "احْرِصْ عَلَى مَا يَنْفَعُكَ، وَاسْتَعِنْ بِاللَّهِ وَلا تَعْجَزْ.", source: "صحيح مسلم" },
-    { text: "لا يَرْحَمُ اللَّهُ مَنْ لا يَرْحَمُ النَّاسَ.", source: "صحيح البخاري ومسلم" },
-    { text: "مَا نَقَصَتْ صَدَقَةٌ مِنْ مَالٍ، وَمَا زَادَ اللَّهُ عَبْدًا بِعَفْوٍ إِلَّا عِزًّا.", source: "صحيح مسلم" },
-    { text: "يَسِّرُوا وَلا تُعَسِّرُوا، وَبَشِّرُوا وَلا تُنَفِّرُوا.", source: "صحيح البخاري ومسلم" },
-    { text: "أَحَبُّ العَمَلِ إِلَى اللَّهِ أَدْوَمُهُ وَإِنْ قَلَّ.", source: "صحيح البخاري ومسلم" },
-    { text: "البِرُّ حُسْنُ الخُلُقِ.", source: "صحيح مسلم" },
-    { text: "مَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَاليَوْمِ الآخِرِ فَلْيَقُلْ خَيْرًا أَوْ لِيَصْمُتْ.", source: "صحيح البخاري ومسلم" },
-    { text: "الطُّهُورُ شَطْرُ الإِيمَانِ، وَالْحَمْدُ لِلَّهِ تَمْلأُ الْمِيزَانَ.", source: "صحيح مسلم" },
-    { text: "رَكْعَتَا الفَجْرِ خَيْرٌ مِنَ الدُّنْيَا وَمَا فِيهَا.", source: "صحيح مسلم" },
-    { text: "مَنْ حَمَلَ عَلَيْنَا السِّلاحَ فَلَيْسَ مِنَّا.", source: "صحيح البخاري ومسلم" },
-    { text: "لَيْسَ الشَّدِيدُ بِالصُّرَعَةِ، إِنَّمَا الشَّدِيدُ الَّذِي يَمْلِكُ نَفْسَهُ عِنْدَ الغَضَبِ.", source: "صحيح البخاري ومسلم" },
-    { text: "إِنَّ الرِّفْقَ لا يَكُونُ فِي شَيْءٍ إِلا زَانَهُ، وَلا يُنْزَعُ مِنْ شَيْءٍ إِلا شَانَهُ.", source: "صحيح مسلم" },
-    { text: "مَا أُعْطِيَ أَحَدٌ عَطَاءً خَيْرًا وَأَوْسَعَ مِنَ الصَّبْرِ.", source: "صحيح البخاري ومسلم" },
-    { text: "وَاللَّهُ فِي عَوْنِ العَبْدِ مَا كَانَ العَبْدُ فِي عَوْنِ أَخِيهِ.", source: "صحيح مسلم" },
-    { text: "سِبَابُ المُسْلِمِ فُسُوقٌ، وَقِتَالُهُ كُفْرٌ.", source: "صحيح البخاري ومسلم" },
-    { text: "خَيْرُكُمْ مَنْ أَطْعَمَ الطَّعَامَ.", source: "صحيح البخاري" },
-    { text: "لا يَدْخُلُ الجَنَّةَ قَاطِعُ رَحِمٍ.", source: "صحيح البخاري ومسلم" }
-  ];
+  // ─── Azkar Integration ──────────────────────────────────────
+  var AZKAR = [];
+  var currentZikr = { text: 'جاري التحميل...', category: 'general' };
 
-  var getHadith = function () {
-    // Deterministic daily rotation based on day-of-year
-    var now = new Date();
-    var start = new Date(now.getFullYear(), 0, 0);
-    var dayOfYear = Math.floor((now - start) / 86400000);
-    return HADITHS[dayOfYear % HADITHS.length];
+  var loadAzkar = function () {
+    fetch('./src/data/azkar.json')
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        AZKAR = data;
+        pickZikr();
+        render();
+      })
+      .catch(function (e) {
+        console.error('Error loading azkar', e);
+        currentZikr = { text: 'تعذر تحميل الأذكار، يرجى تشغيل التطبيق عبر خادم محلي (Local Server).', category: 'general' };
+        render();
+      });
+  };
+
+  var pickZikr = function () {
+    if (!AZKAR || AZKAR.length === 0) return;
+    var hour = new Date().getHours();
+    var isMorning = hour >= 4 && hour < 12; // 4 AM to 12 PM
+    var targetCat = isMorning ? 'morning' : 'evening';
+
+    var valid = AZKAR.filter(function (z) {
+      return z.category === targetCat || z.category === 'general';
+    });
+
+    if (valid.length === 0) valid = AZKAR;
+    currentZikr = valid[Math.floor(Math.random() * valid.length)];
   };
 
   // ─── Category Colors ────────────────────────────────────────
@@ -514,18 +508,18 @@
     var h = '';
 
     // Hero Header
-    var todayHadith = getHadith();
+    var verseSrc = '﴿ وَالذَّاكِرِينَ اللَّهَ كَثِيرًا وَالذَّاكِرَاتِ أَعَدَّ اللَّهُ لَهُمْ مَغْفِرَةً وَأَجْرًا عَظِيمًا ﴾ [الأحزاب: 35]';
     h += '<div class="hero-header">' +
       '<div class="hero-top">' +
       '<h1 class="hero-day">' + (state.todayDate.dayName || '') + '</h1>' +
       '<div class="hero-date"><i class="far fa-calendar-alt"></i> ' + (state.todayDate.date || '') + '</div>' +
       '</div>' +
-      '<div class="wisdom-card" dir="rtl">' +
-      '<div class="wisdom-content">' +
-      '<p class="wisdom-text">' + esc(todayHadith.text) + '</p>' +
-      '<span class="wisdom-source">' + esc(todayHadith.source) + '</span>' +
+      '<div class="azkar-card" dir="rtl">' +
+      '<div class="azkar-content">' +
+      '<p class="azkar-text">' + esc(currentZikr.text) + '</p>' +
+      '<span class="azkar-source">' + verseSrc + '</span>' +
       '</div>' +
-      '<i class="fas fa-quote-left wisdom-icon"></i>' +
+      '<i class="fas fa-quote-left azkar-icon"></i>' +
       '</div>' +
       '</div>';
 
@@ -587,7 +581,7 @@
           '<div class="check-box ' + (tItem.done ? 'checked' : '') + '" data-action="toggle">' + (tItem.done ? '<i class="fas fa-check"></i>' : '') + '</div>' +
           '<div class="item-body"><span class="item-text editable ' + (tItem.done ? 'done' : '') + '" data-action="edit-text">' + esc(tItem.task) + '</span>' +
           '<div class="item-tags">' + taskBadges(tItem) + '</div>' +
-          (!tItem.done ? '<div class="item-slider-row"><input type="range" class="inline-slider" data-action="slide-task" value="' + tPct + '" min="0" max="100"></div>' : '') +
+          (!tItem.done ? '<div class="item-slider-row"><input type="range" class="inline-slider" data-action="slide-task" value="' + tPct + '" min="0" max="100"><span class="slider-pct" style="font-size:10px;font-weight:700;margin:0 8px;min-width:30px;opacity:0.8">' + tPct + '%</span></div>' : '') +
           '</div>' +
           '<div class="item-meta"><span class="item-date ' + (ov ? 'text-red' : '') + '">' + esc(dl) + '</span>' +
           '<span class="badge badge-' + prioClass(tItem.priority) + '">' + (tItem.priority === 'Easy' ? t('easy') : t(tItem.priority.toLowerCase())) + '</span></div>' +
@@ -663,7 +657,7 @@
       h += '<div class="list" id="bookList">';
       items.forEach(function (b) {
         var hasPg = b.totalPages > 0;
-        var pgPct = hasPg ? Math.min(Math.round((b.pagesRead || 0) / b.totalPages * 100), 100) : (b.read ? 100 : 0);
+        var pgPct = hasPg ? Math.min(Math.round((b.pagesRead || 0) / b.totalPages * 100), 100) : (b.manualPct || (b.read ? 100 : 0));
         var itemMetaHtml = '';
         if (b.read) {
           itemMetaHtml += '<span class="item-date">' + t('finished') + ' ' + formatDate(b.finishedDate || todayStr()) + '</span>';
@@ -691,7 +685,7 @@
           '<div class="book-progress">' +
           (hasPg ? '<div class="book-progress-track"><div class="book-progress-fill" style="width:' + pgPct + '%"></div></div>' : '') +
           '<span class="book-progress-text">' + ((b.pagesRead || 0) + (hasPg ? '/' + b.totalPages : '')) + ' ' + t('pg') + '</span></div>' +
-          (!b.read ? '<div class="item-slider-row"><input type="range" class="inline-slider" data-action="slide-book" value="' + (b.pagesRead || 0) + '" min="0" max="' + (hasPg ? b.totalPages : Math.max(100, (b.pagesRead || 0) + 50)) + '"></div>' : '') +
+          (!b.read ? '<div class="item-slider-row"><input type="range" class="inline-slider" data-action="slide-book" value="' + (hasPg ? (b.pagesRead || 0) : pgPct) + '" min="0" max="' + (hasPg ? b.totalPages : 100) + '"><span class="slider-pct" style="font-size:10px;font-weight:700;margin:0 8px;min-width:30px;opacity:0.8">' + pgPct + '%</span></div>' : '') +
           '</div>' +
           '<div class="item-meta book-meta">' +
           itemMetaHtml +
@@ -766,9 +760,11 @@
     if (type === 'task') {
       h += '<label style="font-size:11px;color:var(--text-300);font-weight:600">' + t('due') + ': <input type="date" id="em-date" class="opt-text-input" style="width:100%;margin-top:4px" value="' + esc(item.dueDate || '') + '"></label>';
     } else {
-      h += '<div style="display:flex;gap:10px">';
-      h += '<label style="flex:1;font-size:11px;color:var(--text-300);font-weight:600">' + t('totalPg') + ': <input type="number" id="em-tp" class="opt-num-input" style="width:100%;margin-top:4px" value="' + (item.totalPages || '') + '"></label>';
-      h += '<label style="flex:1;font-size:11px;color:var(--text-300);font-weight:600">' + t('dailyGl') + ': <input type="number" id="em-dg" class="opt-num-input" style="width:100%;margin-top:4px" value="' + (item.dailyGoal || '') + '"></label>';
+      h += '<div style="display:flex;gap:10px;margin-bottom:8px">';
+      h += '<label style="flex:1;font-size:11px;color:var(--text-300);font-weight:600">' + t('pgRead') + ': <input type="number" id="em-pr" class="opt-num-input" style="width:100%;margin-top:4px" value="' + (item.pagesRead || '') + '" min="0"></label>';
+      h += '</div><div style="display:flex;gap:10px">';
+      h += '<label style="flex:1;font-size:11px;color:var(--text-300);font-weight:600">' + t('totalPg') + ': <input type="number" id="em-tp" class="opt-num-input" style="width:100%;margin-top:4px" value="' + (item.totalPages || '') + '" min="0"></label>';
+      h += '<label style="flex:1;font-size:11px;color:var(--text-300);font-weight:600">' + t('dailyGl') + ': <input type="number" id="em-dg" class="opt-num-input" style="width:100%;margin-top:4px" value="' + (item.dailyGoal || '') + '" min="0"></label>';
       h += '</div>';
     }
 
@@ -785,8 +781,17 @@
       if (type === 'task') {
         item.dueDate = m.querySelector('#em-date').value || null;
       } else {
+        item.pagesRead = parseInt(m.querySelector('#em-pr').value) || 0;
         item.totalPages = parseInt(m.querySelector('#em-tp').value) || 0;
         item.dailyGoal = parseInt(m.querySelector('#em-dg').value) || 0;
+        if (item.totalPages > 0) {
+          item.manualPct = Math.min(Math.round(item.pagesRead / item.totalPages * 100), 100);
+        }
+        if (item.totalPages > 0 && item.pagesRead >= item.totalPages && !item.read) {
+          item.read = true; item.finishedDate = todayStr(); playDone();
+        } else if (item.read && ((item.totalPages > 0 && item.pagesRead < item.totalPages) || (item.totalPages === 0 && item.manualPct < 100))) {
+          item.read = false; item.finishedDate = null;
+        }
       }
 
       save(); render();
@@ -940,18 +945,7 @@
           }
         });
 
-        // Handle native input slider events
-        listEl.addEventListener('input', function (e) {
-          if (e.target.classList.contains('inline-slider')) {
-            var item = e.target.closest('.list-item');
-            if (item) {
-              item.style.setProperty('--progress', e.target.value + (e.target.dataset.action === 'slide-task' ? '%' : (e.target.max > 0 ? '%' : 'px')));
-              if (e.target.dataset.action === 'slide-book' && e.target.max > 0) {
-                item.style.setProperty('--progress', (e.target.value / e.target.max * 100) + '%');
-              }
-            }
-          }
-        });
+        // Removed native input slider events from isolated local scope
 
         listEl.addEventListener('change', function (e) {
           if (e.target.classList.contains('inline-slider')) {
@@ -1066,10 +1060,16 @@
           if (e.target.dataset.action === 'slide-book') {
             var b = state.booksList.find(function (x) { return x.id === id; });
             if (b) {
-              b.pagesRead = val;
-              if (b.totalPages > 0 && b.pagesRead >= b.totalPages && !b.read) {
+              if (b.totalPages > 0) {
+                b.pagesRead = val;
+                b.manualPct = Math.round((b.pagesRead / b.totalPages) * 100);
+              } else {
+                b.manualPct = val;
+              }
+              if ((b.totalPages > 0 && b.pagesRead >= b.totalPages && !b.read) || (b.totalPages === 0 && b.manualPct >= 100 && !b.read)) {
                 b.read = true; b.finishedDate = todayStr(); playDone();
-              } else if (b.read && b.totalPages > 0 && b.pagesRead < b.totalPages) {
+                if (b.totalPages === 0) b.manualPct = 100;
+              } else if (b.read && ((b.totalPages > 0 && b.pagesRead < b.totalPages) || (b.totalPages === 0 && b.manualPct < 100))) {
                 b.read = false; b.finishedDate = null;
               }
               save(); render();
@@ -1101,6 +1101,22 @@
   };
 
   // ============================================================
+  //  GLOBAL EVENT LISTENERS
+  // ============================================================
+  document.body.addEventListener('input', function (e) {
+    if (e.target.classList.contains('inline-slider')) {
+      var val = e.target.value;
+      var row = e.target.closest('.item-slider-row');
+      if (row) {
+        var pctSpan = row.querySelector('.slider-pct');
+        if (pctSpan) pctSpan.textContent = val + '%';
+      }
+      var item = e.target.closest('.list-item');
+      if (item) item.style.setProperty('--progress', val + '%');
+    }
+  });
+
+  // ============================================================
   //  KEYBOARD SHORTCUTS
   // ============================================================
   document.addEventListener('keydown', function (e) {
@@ -1130,6 +1146,7 @@
   initDate();
   dailyReset();
   setTheme(getTheme());
+  loadAzkar();
   render();
 
 })();
