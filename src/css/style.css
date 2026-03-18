@@ -1011,7 +1011,7 @@ a {
   inset-inline-start: 0;
   bottom: 0;
   width: var(--progress, 0%);
-  background: color-mix(in srgb, var(--green-glow) var(--progress, 0%), var(--blue-glow));
+  background: color-mix(in srgb, color-mix(in srgb, var(--green) 28%, transparent) var(--progress, 0%), color-mix(in srgb, var(--blue) 28%, transparent));
   z-index: -1;
   transition: width 0.3s ease, background-color 0.3s ease;
   pointer-events: none;
@@ -1020,7 +1020,7 @@ a {
 }
 
 .book-item .item-main-area::before {
-  background: color-mix(in srgb, var(--green-glow) var(--progress, 0%), var(--amber-glow));
+  background: color-mix(in srgb, color-mix(in srgb, var(--green) 28%, transparent) var(--progress, 0%), color-mix(in srgb, var(--amber) 28%, transparent));
 }
 
 .list-item:hover {

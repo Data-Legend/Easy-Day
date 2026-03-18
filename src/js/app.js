@@ -45,7 +45,7 @@
       noMatch: 'No matching tasks', adjFilters: 'Try adjusting your filters', noTasks: 'No tasks yet', addFirst: 'Add your first task above!',
       upcoming: 'Upcoming', Remove: 'Remove',
       readList: 'Reading List', book: 'book', read: 'read', pgRead: 'Pages Read',
-      addBook: 'Add a new book...', totalPg: 'Total Pages', dailyGl: 'Daily Goal', catEx: 'Category (e.g. Science)',
+      addBook: 'Add a new book...', totalPg: 'Total Pages', dailyGl: 'Daily Goal', catEx: 'Category (e.g. Science)', author: 'Author', authorEx: 'Author (e.g. Orwell)',
       noCatBooks: 'No books in this category', tryCat: 'Try another category', noBooks: 'No books yet', startRead: 'Start building your reading list!',
       expected: 'EXPECTED: ', added: 'Added: ', finished: 'Finished: ', pg: 'pg', pgDay: 'pg/day',
       archEmpty: 'Archive is empty', archSub: 'Archived tasks and books will appear here.', clrArch: 'Clear archive',
@@ -64,7 +64,7 @@
       noMatch: 'لا توجد مهام مطابقة', adjFilters: 'حاول تغيير الفلاتر', noTasks: 'لا توجد مهام بعد', addFirst: 'أضف مهمتك الأولى بالأعلى!',
       upcoming: 'القادمة', Remove: 'حذف',
       readList: 'قائمة القراءة', book: 'كتاب', read: 'تمت قرائته', pgRead: 'الصفحات المقروءة',
-      addBook: 'أضف كتاباً جديداً...', totalPg: 'عدد الصفحات', dailyGl: 'الهدف اليومي', catEx: 'الفئة (مثال: علوم)',
+      addBook: 'أضف كتاباً جديداً...', totalPg: 'عدد الصفحات', dailyGl: 'الهدف اليومي', catEx: 'الفئة (مثال: علوم)', author: 'المؤلف', authorEx: 'المؤلف (مثال: العقاد)',
       noCatBooks: 'لا توجد كتب في هذه الفئة', tryCat: 'جرب فئة مختلفة', noBooks: 'لا توجد كتب في القائمة', startRead: 'ابدأ ببناء قائمة قراءتك!',
       expected: 'المتوقع: ', added: 'أُضيف: ', finished: 'اكتمل: ', pg: 'ص', pgDay: 'ص/ي',
       archEmpty: 'الأرشيف فارغ', archSub: 'المهام والكتب المؤرشفة ستظهر هنا.', clrArch: 'تفريغ الأرشيف',
@@ -201,6 +201,7 @@
       state.toDoList.forEach(function (t) { if (!t.category) t.category = 'Main'; });
       state.booksList.forEach(function (b) {
         if (!b.category) b.category = 'General';
+        if (!b.author) b.author = '';
         if (b.totalPages === undefined) b.totalPages = 0;
         if (b.pagesRead === undefined) b.pagesRead = 0;
         if (b.dailyGoal === undefined) b.dailyGoal = 0;
@@ -295,6 +296,7 @@
     state.booksList.push({
       id: uid(), book: text, added: todayStr(), read: false,
       category: opts.category || 'General',
+      author: opts.author || '',
       totalPages: parseInt(opts.totalPages) || 0,
       pagesRead: 0,
       dailyGoal: parseInt(opts.dailyGoal) || 0,
@@ -636,6 +638,8 @@
       '<div class="opt-input-wrap"><i class="fas fa-bullseye" style="color:var(--green)"></i><input type="number" id="bookGoal" placeholder="' + t('dailyGl') + '" min="0" class="opt-num-clean"></div>' +
       '</div>' +
       '<div class="opt-combo-group">' +
+      '<div class="opt-input-wrap"><i class="fas fa-user-edit"></i><input type="text" id="bookAuthor" placeholder="' + t('authorEx') + '" maxlength="30" class="opt-text-clean"></div>' +
+      '<div class="opt-combo-divider">/</div>' +
       '<div class="opt-input-wrap"><i class="fas fa-tag"></i><input type="text" id="bookCat" placeholder="' + t('catEx') + '" maxlength="20" class="opt-text-clean"></div>' +
       '</div>' +
       '</div></div>';
@@ -672,6 +676,7 @@
             var isoEst = estDate.getFullYear() + '-' + String(estDate.getMonth() + 1).padStart(2, '0') + '-' + String(estDate.getDate()).padStart(2, '0');
             itemMetaHtml += '<span class="item-date" style="color:var(--green);font-size:9px;text-transform:uppercase;font-weight:700">' + t('expected') + ' ' + formatDate(isoEst) + '</span>';
           }
+          if (b.author) itemMetaHtml += '<span class="item-date" style="margin-right:4px"><i class="fas fa-user"></i> ' + esc(b.author) + '</span>';
           itemMetaHtml += '<button class="add-pages-btn" data-action="addpages"><i class="fas fa-plus-circle"></i></button>';
           itemMetaHtml += '<span class="item-date" style="opacity:0.6">' + t('added') + ' ' + formatDate(b.added) + '</span>';
         }
@@ -766,6 +771,7 @@
     } else {
       h += '<div style="display:flex;gap:10px;margin-bottom:8px">';
       h += '<label style="flex:1;font-size:11px;color:var(--text-300);font-weight:600">' + t('pgRead') + ': <input type="number" id="em-pr" class="opt-num-input" style="width:100%;margin-top:4px" value="' + (item.pagesRead || '') + '" min="0"></label>';
+      h += '<label style="flex:1;font-size:11px;color:var(--text-300);font-weight:600">' + t('author') + ': <input type="text" id="em-author" class="opt-text-input" style="width:100%;margin-top:4px" value="' + esc(item.author || '') + '"></label>';
       h += '</div><div style="display:flex;gap:10px">';
       h += '<label style="flex:1;font-size:11px;color:var(--text-300);font-weight:600">' + t('totalPg') + ': <input type="number" id="em-tp" class="opt-num-input" style="width:100%;margin-top:4px" value="' + (item.totalPages || '') + '" min="0"></label>';
       h += '<label style="flex:1;font-size:11px;color:var(--text-300);font-weight:600">' + t('dailyGl') + ': <input type="number" id="em-dg" class="opt-num-input" style="width:100%;margin-top:4px" value="' + (item.dailyGoal || '') + '" min="0"></label>';
@@ -788,6 +794,7 @@
         item.pagesRead = parseInt(m.querySelector('#em-pr').value) || 0;
         item.totalPages = parseInt(m.querySelector('#em-tp').value) || 0;
         item.dailyGoal = parseInt(m.querySelector('#em-dg').value) || 0;
+        item.author = m.querySelector('#em-author').value.trim();
         if (item.totalPages > 0) {
           item.manualPct = Math.min(Math.round(item.pagesRead / item.totalPages * 100), 100);
         }
@@ -951,6 +958,16 @@
 
         // Removed native input slider events from isolated local scope
 
+        listEl.addEventListener('input', function (e) {
+          if (e.target.classList.contains('inline-slider') && e.target.dataset.action === 'slide-task') {
+            var val = e.target.value;
+            var item = e.target.closest('.item-main-area');
+            if (item) item.style.setProperty('--progress', val + '%');
+            var txt = e.target.parentElement.querySelector('.slider-pct');
+            if (txt) txt.innerHTML = val + '%';
+          }
+        });
+
         listEl.addEventListener('change', function (e) {
           if (e.target.classList.contains('inline-slider')) {
             var id = e.target.closest('.list-item').dataset.id;
@@ -958,10 +975,12 @@
             if (e.target.dataset.action === 'slide-task') {
               var t = state.toDoList.find(function (x) { return x.id === id; });
               if (t) {
+                var prevDone = t.done;
                 t.progressPct = val;
                 if (val === 100 && !t.done) { t.done = true; playDone(); }
                 else if (val < 100 && t.done) { t.done = false; }
-                save(); render();
+                save();
+                if (t.done !== prevDone) render();
               }
             }
           }
@@ -1010,6 +1029,7 @@
         var pgInp = $('#bookPages'); opts.totalPages = pgInp ? pgInp.value : 0;
         var goalInp = $('#bookGoal'); opts.dailyGoal = goalInp ? goalInp.value : 0;
         var catInp = $('#bookCat'); opts.category = (catInp && catInp.value.trim()) ? titleCase(catInp.value.trim()) : 'General';
+        var authInp = $('#bookAuthor'); opts.author = authInp ? authInp.value.trim() : '';
         addBook(val, opts);
         toast(t('bookAdded'), 'success'); render();
         setTimeout(function () { var i = $('#bookInput'); if (i) i.focus(); }, 50);
@@ -1057,6 +1077,31 @@
         }
       });
 
+      bookList.addEventListener('input', function (e) {
+        if (e.target.classList.contains('inline-slider') && e.target.dataset.action === 'slide-book') {
+          var val = parseInt(e.target.value);
+          var max = parseInt(e.target.max) || 100;
+          var pct = Math.round((val / max) * 100);
+          var item = e.target.closest('.item-main-area');
+          if (item) item.style.setProperty('--progress', pct + '%');
+          var pctTxt = e.target.parentElement.querySelector('.slider-pct');
+          if (pctTxt) pctTxt.innerHTML = pct + '%';
+
+          var prgFill = e.target.closest('.item-body').querySelector('.book-progress-fill');
+          if (prgFill) prgFill.style.width = pct + '%';
+          var prgTxt = e.target.closest('.item-body').querySelector('.book-progress-text');
+          if (prgTxt) {
+            var origTxt = prgTxt.innerHTML;
+            if (origTxt.indexOf('/') !== -1) {
+              var maxValStr = origTxt.split('/')[1].split(' ')[0];
+              prgTxt.innerHTML = val + '/' + maxValStr + ' ' + t('pg');
+            } else {
+              prgTxt.innerHTML = val + ' ' + t('pg');
+            }
+          }
+        }
+      });
+
       bookList.addEventListener('change', function (e) {
         if (e.target.classList.contains('inline-slider')) {
           var id = e.target.closest('.list-item').dataset.id;
@@ -1064,6 +1109,7 @@
           if (e.target.dataset.action === 'slide-book') {
             var b = state.booksList.find(function (x) { return x.id === id; });
             if (b) {
+              var prevRead = b.read;
               if (b.totalPages > 0) {
                 b.pagesRead = val;
                 b.manualPct = Math.round((b.pagesRead / b.totalPages) * 100);
@@ -1076,7 +1122,8 @@
               } else if (b.read && ((b.totalPages > 0 && b.pagesRead < b.totalPages) || (b.totalPages === 0 && b.manualPct < 100))) {
                 b.read = false; b.finishedDate = null;
               }
-              save(); render();
+              save();
+              if (b.read !== prevRead) render();
             }
           }
         }
