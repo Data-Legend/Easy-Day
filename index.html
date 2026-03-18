@@ -4,49 +4,115 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Easy-Day — Your all-in-one productivity app for organizing tasks, books, and ideas.">
+    <meta name="theme-color" content="#0f1117">
     <link rel="shortcut icon" href="./src/imgs/checkMark.png" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css2?family=Stick+No+Bills:wght@200;300;400&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./src/css/all.min.css"> 
     <link rel="stylesheet" href="./src/css/style.css">
-    <title>Easy-Day App</title>
+    <title>Easy-Day — Productivity App</title>
 </head>
- <body>
-   <div class="left_bar">
-     <div class="logo">
-       <a href="#"><img src="./src/imgs/logo.png" alt="toDo-logo"></a>
-       <!-- <h2>To-Do List</h2> -->
+ <body data-theme="dark">
+   <!-- Sidebar Navigation -->
+   <nav class="sidebar" id="sidebar">
+     <div class="sidebar__logo">
+       <a href="#"><img src="./src/imgs/logo.png" alt="Easy-Day Logo"></a>
      </div>
-     <div class="options_list">
+     <div class="sidebar__menu" id="sidebarMenu">
      </div>
-   </div>
-   <div class="parenContainer">
-    <div class="container">
-      <div class="header">
-        <div><img src="./src/imgs/Calendar-icon.png" alt=""><h2></h2></div>
+     <div class="sidebar__footer">
+       <button class="theme-toggle" id="themeToggle" title="Toggle Theme">
+         <i class="fas fa-moon"></i>
+       </button>
+       <button class="export-btn" id="exportBtn" title="Export Data">
+         <i class="fas fa-download"></i>
+       </button>
+       <label class="import-btn" title="Import Data">
+         <i class="fas fa-upload"></i>
+         <input type="file" id="importInput" accept=".json" hidden>
+       </label>
+     </div>
+   </nav>
+
+   <!-- Main Content -->
+   <main class="main" id="mainContent">
+    <div class="container" id="appContainer">
+      <!-- Header with date -->
+      <header class="header" id="dateHeader">
+        <div><img src="./src/imgs/Calendar-icon.png" alt="Calendar"><h1></h1></div>
         <p></p>
+      </header>
+      <!-- Search Bar -->
+      <div class="search-bar" id="searchBar">
+        <i class="fas fa-search"></i>
+        <input type="text" id="searchInput" placeholder="Search tasks...">
+        <button class="search-clear" id="searchClear"><i class="fas fa-times"></i></button>
       </div>
-      <div class="addTask">
-       <form class="new-task-form" action="">
-         <div class="select">
+      <!-- Add Task Form -->
+      <div class="add-form">
+       <form class="new-task-form" id="taskForm" action="">
+         <div class="select-wrapper">
          <select id="priority">
-           <option selected  value="Easy">EASY</option>
+           <option selected value="Easy">EASY</option>
           <option value="MID">MID</option>
           <option value="HIGH">HIGH</option>
           </select>
           </div>
-          <input autofocus id="taskInput" type="text" name="newTask" placeholder="Add a new task...">
-         <button type="submit">Add</button>
+          <input autofocus id="taskInput" type="text" name="newTask" placeholder="Add a new task..." maxlength="120">
+         <button type="submit" id="addTaskBtn"><i class="fas fa-plus"></i> Add</button>
        </form>
       </div>
-      <div class="tasks">
+      <!-- Stats Bar -->
+      <div class="stats-bar" id="statsBar">
+        <div class="stats-item">
+          <span class="stats-label">Total</span>
+          <span class="stats-value" id="statTotal">0</span>
+        </div>
+        <div class="stats-item">
+          <span class="stats-label">Done</span>
+          <span class="stats-value stats-done" id="statDone">0</span>
+        </div>
+        <div class="stats-item">
+          <span class="stats-label">Remaining</span>
+          <span class="stats-value stats-remaining" id="statRemaining">0</span>
+        </div>
+        <div class="stats-progress">
+          <div class="stats-progress-bar" id="statsProgressBar"></div>
+        </div>
+      </div>
+      <!-- Tasks Container -->
+      <section class="tasks" id="tasksSection">
         <div class="tasks-list">
           <ul class="today-s-list">
             </ul>
         </div>
-      </div>
+      </section>
+     </div>
+   </main>
+
+   <!-- Toast notifications container -->
+   <div class="toast-container" id="toastContainer"></div>
+
+   <!-- Keyboard shortcuts modal -->
+   <div class="modal-overlay" id="shortcutsModal">
+     <div class="modal">
+       <div class="modal__header">
+         <h3><i class="fas fa-keyboard"></i> Keyboard Shortcuts</h3>
+         <button class="modal__close" id="closeShortcuts"><i class="fas fa-times"></i></button>
+       </div>
+       <div class="modal__body">
+         <div class="shortcut"><kbd>N</kbd> <span>Focus new task input</span></div>
+         <div class="shortcut"><kbd>S</kbd> <span>Focus search</span></div>
+         <div class="shortcut"><kbd>1</kbd> <span>Go to Daily Tasks</span></div>
+         <div class="shortcut"><kbd>2</kbd> <span>Go to Books</span></div>
+         <div class="shortcut"><kbd>3</kbd> <span>Go to Archive</span></div>
+         <div class="shortcut"><kbd>T</kbd> <span>Toggle theme</span></div>
+         <div class="shortcut"><kbd>?</kbd> <span>Show this help</span></div>
+         <div class="shortcut"><kbd>Esc</kbd> <span>Close modals / Clear search</span></div>
+       </div>
      </div>
    </div>
+
   <script type="module" defer src="./src/js/controller.js"></script>
 </body>
 </html>
