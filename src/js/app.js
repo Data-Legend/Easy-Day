@@ -577,11 +577,13 @@
         var dl = taskDateLabel(tItem);
         var ov = dl === t('overdue');
         var tPct = tItem.done ? 100 : (tItem.progressPct || 0);
-        h += '<div class="list-item' + (ov ? ' overdue' : '') + '" data-id="' + tItem.id + '" style="--progress:' + tPct + '%">' +
+        h += '<div class="list-item' + (ov ? ' overdue' : '') + '" data-id="' + tItem.id + '">' +
+          '<div class="item-main-area" style="position:relative; flex:1; display:flex; align-items:center; gap:10px; margin-block:-10px; margin-inline-start:-12px; padding-block:10px; padding-inline-start:12px; --progress:' + tPct + '%;">' +
           '<div class="check-box ' + (tItem.done ? 'checked' : '') + '" data-action="toggle">' + (tItem.done ? '<i class="fas fa-check"></i>' : '') + '</div>' +
           '<div class="item-body"><span class="item-text editable ' + (tItem.done ? 'done' : '') + '" data-action="edit-text">' + esc(tItem.task) + '</span>' +
           '<div class="item-tags">' + taskBadges(tItem) + '</div>' +
           (!tItem.done ? '<div class="item-slider-row"><input type="range" class="inline-slider" data-action="slide-task" value="' + tPct + '" min="0" max="100"><span class="slider-pct" style="font-size:10px;font-weight:700;margin:0 8px;min-width:30px;opacity:0.8">' + tPct + '%</span></div>' : '') +
+          '</div>' +
           '</div>' +
           '<div class="item-meta"><span class="item-date ' + (ov ? 'text-red' : '') + '">' + esc(dl) + '</span>' +
           '<span class="badge badge-' + prioClass(tItem.priority) + '">' + (tItem.priority === 'Easy' ? t('easy') : t(tItem.priority.toLowerCase())) + '</span></div>' +
@@ -674,7 +676,8 @@
           itemMetaHtml += '<span class="item-date" style="opacity:0.6">' + t('added') + ' ' + formatDate(b.added) + '</span>';
         }
 
-        h += '<div class="list-item book-item" data-id="' + b.id + '" style="--progress:' + pgPct + '%">' +
+        h += '<div class="list-item book-item" data-id="' + b.id + '">' +
+          '<div class="item-main-area" style="position:relative; flex:1; display:flex; align-items:center; gap:10px; margin-block:-10px; margin-inline-start:-12px; padding-block:10px; padding-inline-start:12px; --progress:' + pgPct + '%;">' +
           '<div class="check-box ' + (b.read ? 'checked' : '') + '" data-action="toggle">' + (b.read ? '<i class="fas fa-check"></i>' : '') + '</div>' +
           '<div class="item-body">' +
           '<span class="item-text ' + (b.read ? 'done' : '') + '">' + esc(b.book) + '</span>' +
@@ -686,6 +689,7 @@
           (hasPg ? '<div class="book-progress-track"><div class="book-progress-fill" style="width:' + pgPct + '%"></div></div>' : '') +
           '<span class="book-progress-text">' + ((b.pagesRead || 0) + (hasPg ? '/' + b.totalPages : '')) + ' ' + t('pg') + '</span></div>' +
           (!b.read ? '<div class="item-slider-row"><input type="range" class="inline-slider" data-action="slide-book" value="' + (hasPg ? (b.pagesRead || 0) : pgPct) + '" min="0" max="' + (hasPg ? b.totalPages : 100) + '"><span class="slider-pct" style="font-size:10px;font-weight:700;margin:0 8px;min-width:30px;opacity:0.8">' + pgPct + '%</span></div>' : '') +
+          '</div>' +
           '</div>' +
           '<div class="item-meta book-meta">' +
           itemMetaHtml +
